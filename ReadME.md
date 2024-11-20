@@ -33,3 +33,6 @@ docker-compose -f <file name> -f <file name> up -d (-f file name)
 
 ### mongo ####
 mongosh -u "mongoAdmin" -p "Test@1234"
+
+docker logs <container name> -f  (to see logs)
+docker inspect <container id> (to  inspect )

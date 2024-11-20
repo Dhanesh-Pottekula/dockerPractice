@@ -8,9 +8,6 @@ services:
       - PORT=4000
   mongo:
     image: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongoAdmin
-      - MONGO_INITDB_ROOT_PASSWORD=Test@1234
     volumes:
       - mongo-db:/data/db
 

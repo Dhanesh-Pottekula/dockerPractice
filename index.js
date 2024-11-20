@@ -1,9 +1,15 @@
 // Import required modules
 const express = require('express');
+const mongoose = require('mongoose');
+const { MONGO_PORT, MONGO_IP, MONGO_PASSWORD, MONGO_USER } = require('./config/config');
 
 // Initialize the Express app
 const app = express();
-
+mongoose.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`).then(()=>{
+  console.log("successfully connected to data base")
+}).catch((err)=>{
+  console.log(err)
+})
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
