@@ -24,3 +24,10 @@ docker volume prune  --> deletes all unnecessary volumes
 docker rm <container id > -fv -->(v deletes the volume while removing container)
 docker volume rm <volume name >  --> deletes the specific volume 
 
+### using docker compose file##
+docker-compose  up 
+docker-compose down -v 
+docker-compose up -d --build ( -d detach mode , --build forces the build on image)
+
+docker-compose -f <file name> -f <file name> up -d (-f file name)
+

@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 4000;
 
 // Define a sample route
 app.get('/', (req, res) => {
-  res.send(`Welcome to the Node.js API Serve!!!${process.env.PORT}`);
+  res.send(`Welcome to the Node.js API Serve!!${process.env.PORT}`);
 });
 
 
