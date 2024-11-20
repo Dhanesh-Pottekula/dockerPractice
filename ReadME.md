@@ -31,3 +31,5 @@ docker-compose up -d --build ( -d detach mode , --build forces the build on imag
 
 docker-compose -f <file name> -f <file name> up -d (-f file name)
 
+### mongo ####
+mongosh -u "mongoAdmin" -p "Test@1234"
