@@ -36,3 +36,8 @@ mongosh -u "mongoAdmin" -p "Test@1234"
 
 docker logs <container name> -f  (to see logs)
 docker inspect <container id> (to  inspect )
+
+
+
+### need a review ###
+how to do the bridge networks
