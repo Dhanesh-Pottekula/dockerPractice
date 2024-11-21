@@ -29,7 +29,9 @@ docker-compose  up
 docker-compose down -v 
 docker-compose up -d --build ( -d detach mode , --build forces the build on image)
 
-docker-compose -f <file name> -f <file name> up -d (-f file name)
+docker-compose -f <file name> -f <file name> up -d --build (-f file name, --build build again)
+
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --scale <image name>=2 (--scale scales the containers, 2- i need 2 containers)  
 
 ### mongo ####
 mongosh -u "mongoAdmin" -p "Test@1234"

@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require('cors')
 const mongoose = require("mongoose");
 const { MONGO_PORT, MONGO_IP, MONGO_PASSWORD, MONGO_USER, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
 const RedisStore = require("connect-redis").default;
 const session = require("express-session");
 const { createClient } = require("redis");
+const app = express();
+
 
 // Initialize Redis client
 const redisClient = createClient({
@@ -21,8 +24,11 @@ const redisStore = new RedisStore({
   prefix: "myapp:", // Optional prefix for keys in Redis
 });
 
-const app = express();
 
+
+////// middlewares /////
+app.use(cors())
+app.enable("trust proxy");
 // Session middleware
 app.use(
   session({
@@ -37,6 +43,10 @@ app.use(
     },
   })
 );
+app.use(express.json());
+
+
+
 // MongoDB connection
 mongoose
   .connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`)
@@ -47,21 +57,21 @@ mongoose
     console.log("Error connecting to MongoDB:", err);
   });
 
+
+
 // Define routes
 const postRouter = require("./routes/postRoutes");
 const userRouter = require("./routes/userRoutes");
-
-// Middleware to parse JSON request bodies
-app.use(express.json());
-
+// Default route
+app.get("/v1", (req, res) => {
+  console.log("recived")
+  res.status(200).json({ message: "Hello World!!" });
+});
 // Mount routers
 app.use("/v1/posts", postRouter);
 app.use("/v1/users", userRouter);
 
-// Default route
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Hello World!!" });
-});
+
 
 // Start the server
 const PORT = process.env.PORT || 4000;
