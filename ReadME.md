@@ -1,9 +1,26 @@
+### AWS ###
+
+ssh -i  <key pair file location > <name ex: ec2-user>@<ip address>
+
+## install docker in aws ##
+sudo yum update -y 
+sudo yum  install docker -y 
+sudo service docker start
+
+sudo usermod -aG docker ec2-user  - allow ec2 user to access the docker 
+
+
+
+
+### DOCKER ###
+
 docker build -t node-image-app .   -->  -t is to specify name
 
 docker run -p 4000:4000 -d --name <name> <ImageId> (-d detach mode from terminal) (--name we can give name )
 
 docker ps -a --> gives all containers
 docker image ls --> gives images 
+docker pull <image name> - to pull the image 
 
 docker stop <container id>
 docker start <container id>
